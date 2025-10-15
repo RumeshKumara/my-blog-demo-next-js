@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -8,8 +9,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const { login } = useAuth();
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await login(email, password);
@@ -17,6 +17,7 @@ export default function LoginPage() {
     } catch (error) {
       console.error("Login failed");
     }
+  };
   };
 
   return (
